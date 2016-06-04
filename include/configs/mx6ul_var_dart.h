@@ -108,10 +108,10 @@
 	"var_auto_fdt_file=Y\0" \
 	"boot_fdt=try\0" \
 	"ip_dyn=yes\0" \
-	"bootargs=console=ttymxc0,115200 ubi.mtd=4 "  \
+	"bootargs=console=ttymxc0,115200 ubi.mtd=5 "  \
 		"root=ubi0:rootfs rootfstype=ubifs \0"\
-	"bootcmd=nand read ${loadaddr} 0x600000 0x600000;"\
-		"nand read ${fdt_addr} 0xde0000 0x20000;"\
+	"bootcmd=nand read ${loadaddr} 0x800000 0x800000;"\
+		"nand read ${fdt_addr} 0xfe0000 0x20000;"\
 		"bootz ${loadaddr} - ${fdt_addr}\0" \
 	"netargs=setenv bootargs console=${console},${baudrate} " \
 		"root=/dev/nfs " \
@@ -270,6 +270,9 @@
 #define CONFIG_ENV_OFFSET		0x00400000
 #define CONFIG_ENV_SECT_SIZE		0x00200000
 #define CONFIG_ENV_SIZE			CONFIG_ENV_SECT_SIZE
+/*CMA VARIANT*/
+#define CONFIG_ENV_ADDR_REDUND		(CONFIG_ENV_OFFSET + CONFIG_SYS_ENV_SECT_SIZE)
+#define CONFIG_ENV_SIZE_REDUND		(CONFIG_ENV_SIZE)
 #endif
 
 
@@ -336,7 +339,7 @@
 #define CONFIG_MXC_OCOTP
 #define CONFIG_FEC_MXC
 #define CONFIG_MII
-#define CONFIG_FEC_ENET_DEV		0
+#define CONFIG_FEC_ENET_DEV		1
 
 #if (CONFIG_FEC_ENET_DEV == 0)
 #define IMX_FEC_BASE			ENET_BASE_ADDR
