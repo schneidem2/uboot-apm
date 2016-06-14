@@ -104,7 +104,6 @@ int setup_i2c(unsigned i2c_index, int speed, int slave_addr,
 #ifndef CONFIG_DM_I2C
 	bus_i2c_init(i2c_index, speed, slave_addr, force_idle_bus, p);
 #endif
-
 	return 0;
 
 err_idle:
@@ -112,6 +111,5 @@ err_clk:
 	gpio_free(p->scl.gp);
 err_req:
 	gpio_free(p->sda.gp);
-
 	return ret;
 }
